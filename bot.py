@@ -34,13 +34,15 @@ def kod_bilan_izlash(message):
 
 bot.polling()
 
+
+# noinspection PyBroadException
 @bot.message_handler(commands=['add'])
 def add_kod(message):
     try:
         _, kod, link = message.text.split(maxsplit=2)
 
 
-        kino_baza = load_kino_baza()
+        kino_baza.json = load_kino_baza()
 
         kino_baza[kod] = link
         save_kino_baza(kino_baza)
